@@ -36,7 +36,6 @@ import sync from 'browser-sync';
 import htmlmin from 'gulp-htmlmin';
 import htmlhint from 'gulp-htmlhint';
 import postcss from 'gulp-postcss';
-import precss from 'precss';
 import pimport from 'postcss-import';
 import minmax from 'postcss-media-minmax';
 import autoprefixer from 'autoprefixer';
@@ -44,15 +43,11 @@ import csso from 'postcss-csso';
 import del from 'del';
 import fileinclude from 'gulp-file-include';
 import webpack from 'webpack-stream';
-import babel from 'gulp-babel';
-import uglify from 'uglifyjs-webpack-plugin';
 import sourcemaps from 'gulp-sourcemaps';
 import imagesmin from 'gulp-imagemin';
 import webp from 'gulp-webp';
 import woff from 'gulp-ttf2woff';
 import woff2 from 'gulp-ttf2woff2';
-
-
 
 // Html
 
@@ -75,7 +70,6 @@ export const styles = () => {
     .pipe(sourcemaps.init())
     .pipe(postcss([
         pimport,
-        precss,
         minmax,
         autoprefixer,
         csso
@@ -181,7 +175,7 @@ export default gulp.series(
         styles,
         scripts,
         images,
-        fonts
+        fonts,
     ),
     gulp.parallel(
         watch,
